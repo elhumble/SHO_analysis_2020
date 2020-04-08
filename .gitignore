@@ -1,0 +1,15 @@
+.DS_Store
+.Rapp.history
+.Rhistory
+.Rproj.user/
+/data
+/doc
+/figs
+/macs_scripts
+ANGSD_workflow.txt
+geneious_workflow.txt
+LAST_alignment_workflow.txt
+PSMC_workflow.txt
+SHO_mitogenome_workflow.txt
+SHO_WGS_workflow_2018.txt
+SNP_filtering_workflow.txt
