@@ -13,7 +13,7 @@ options(scipen=999)
 i.iteration=20 # Number of iterations to use in file
 s=100 # bin size
 
-#~~ Read in main PSMC files
+#~~ Read in main PSMC files. Generated using 4.1_PSMC.sh & run_4.2_boot_PSMC.sh from https://github.com/elhumble/SHO_reseq_2020
 
 psmc_files <- paste("data/psmc/", list.files(path = "data/psmc", pattern="*.psmc"), sep = "")
 

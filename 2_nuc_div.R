@@ -19,6 +19,7 @@ devtools::install_github("thomasp85/patchwork")
 #~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~#
 
 # Generated with one ind SFS using ANGSD for each chr
+# run_5.1_angsdHet.sh &	run_5.2_realSFS.sh from https://github.com/elhumble/SHO_reseq_2020
 
 import_files <- function(file){
   fread(file)
@@ -121,8 +122,7 @@ het_6 <- ggplot(ind_het_6_chr, aes(ID3, het, fill = pop)) +
 # Read in species hets from Ekblom paper
 
 sp_het <- read_excel("data/additional_sp_het.xlsx") %>%
-  mutate(Common_Name = gsub("Bottlenose Dolphin", "Dolphin", Common_Name)) %>%
-  dplyr::filter(Common_Name != "Brown Bear" & Common_Name != "Bighorn Sheep" )
+  mutate(Common_Name = gsub("Bottlenose Dolphin", "Dolphin", Common_Name))
 
 # Add oryx data based on 6 focal individuals
 

@@ -4,16 +4,13 @@
 
 **Summary**
 -------------
-This repository contains the scripts used for downstream analyses and visualisation including synteny plotting, genetic diversity analyses, PSMC simulations and PSMC visualisation. Please see github repository *SHO_reseq_2020* for prior steps including alignment and SNP calling.
+This repository contains the scripts used for downstream analyses and visualisation including synteny plotting, genetic diversity analyses, PSMC simulations and PSMC visualisation. Please see github repository [SHO_reseq_2020](https://github.com/elhumble/SHO_reseq_2020) for prior steps including alignment and SNP calling.
 
 **Data**
 -------------
-synteny
-PSMC files
-Het file and div stats
-PLINK files for het
-DRYAD
+Most intermediate data files required to run these scripts are available on the Dryad Digital Repository. All other files can be generated using scripts from the [first part](https://github.com/elhumble/SHO_reseq_2020) of the pipeline.  
 
 `/file_lists` contains all other files required for running the scripts
 `/scripts` contains a few extra scripts that are required
+
 ###### Please feel free to [get in touch](mailto:emily.humble@ed.ac.uk) if you have any questions.

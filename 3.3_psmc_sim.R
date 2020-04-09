@@ -14,6 +14,7 @@ library(dplyr)
 library(windowscanr)
 
 # Script to read in output from Macs simulation and plot results against sliding window heterozygosity
+# Output from 4.3_macs_28_<sampleID>.sh
 
 #~~~~~~~~~~~~~~~~~~~~~~~~~~#
 #        Macs out         #
@@ -94,7 +95,7 @@ het <- function(x){
 
 #~~ Read in filtered SNP file
 
-snp_file <- fread("data/snps_focal/ORYX_geno_focal_biallelic_gdepth_miss_hwe_himaf.traw")
+snp_file <- fread("data/snps_focal/ORYX_geno_focal_biallelic_gdepth_miss_himaf.traw")
 
 snps <- snp_file %>%
   select(-c(SNP, `(C)M`, COUNTED, ALT)) %>%
