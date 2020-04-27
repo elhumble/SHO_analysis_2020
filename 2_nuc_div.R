@@ -12,7 +12,8 @@ library(gridExtra)
 options(scipen=999)
 library(scales)
 library(devtools)
-devtools::install_github("thomasp85/patchwork")
+#devtools::install_github("thomasp85/patchwork")
+library(patchwork)
 
 #~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~#
 #   Individual genome-wide heterozygosity  #  
@@ -213,8 +214,6 @@ sp_het_plot <- ggplot(sp_het, aes(N_census, Observed_Het,
   ylab("Genome-wide heterozygosity") + xlab("Census population size") +
   ggtitle("A")
 
-dev.off()
-
 
 # Arrange plots
 
@@ -224,6 +223,14 @@ grid.arrange(sp_het_plot, het_6,
              ncol = 2, nrow = 1,
              widths = c(2.4, 1.6))
 dev.off()
+
+# tiff
+
+fig_2 <- grid.arrange(sp_het_plot, het_6,
+             ncol = 2, nrow = 1,
+             widths = c(2.4, 1.6))
+
+ggsave("figs/Figure_2.tiff", fig_2, height = 5, width = 11)
 
 
 #~~~~~~~~~~~~~~~~#
