@@ -82,27 +82,25 @@ ind_het_6 <- ind_het_6_chr %>%
 
 summary(ind_het_6$het)
 
-png(file="figs/genome_wide_het_pop_6.png", units = "in", res = 300, height=6, width=7)
-
 ggplot(ind_het_6, aes(fct_reorder(pop, het), het, fill = pop)) +
   geom_boxplot() +
   theme_emily() +
   scale_fill_manual(values = cbPalette, name = "Population") +
   ylab("Genome-wide heterozygosity") + xlab("Population")
 
-dev.off()
-
 ind_het_6_chr <- ind_het_6_chr %>%
   mutate(ID3 = factor(ID3, levels = c("G449", "G445",
                                     "#35552", "#34412",
                                     "#33556", "#36948")))
 
+scaleFUN <- function(x) sprintf("%.4f", x)
 
 het_6 <- ggplot(ind_het_6_chr, aes(ID3, het, fill = pop)) +
   geom_boxplot(outlier.size = -1, col = "grey40", alpha = 0.9) +
   geom_jitter(size = 2, shape = 21, alpha = 0.3, width = 0.1) +
   theme_emily() +
   scale_fill_manual(values = cbPalette[c(2,3,1)], name = "Population") +
+  scale_y_continuous(labels=scaleFUN) + 
   ylab("Genome-wide heterozygosity") + xlab("Individual ID") +
   theme(legend.position=c(.9, .2)) +
   ggtitle("B")
