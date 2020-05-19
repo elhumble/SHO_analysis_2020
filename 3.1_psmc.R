@@ -112,13 +112,13 @@ fig_3 <- ggplot(mapping = aes(dplyr::filter(psmc_df, Sample == "MSH005" & mu == 
   annotate("rect", xmin = 10000, xmax = 120000, ymin = -Inf, ymax = Inf,
            alpha = .1) +
   geom_vline(xintercept=22000, linetype = "dashed", colour = "grey") +
-  annotate("text", x = 8700, y = 115000, label = "HOLOCONE", angle = 90, size = 2.5) +
+  annotate("text", x = 8700, y = 112000, label = "HOLOCONE", angle = 90, size = 2.5) +
   geom_vline(xintercept=2600000, colour = "grey") +
-  annotate("text", x = 19000, y = 118000, label = "LGM 22 ka", angle = 90, size = 2.5) +
+  annotate("text", x = 19000, y = 115000, label = "LGM 22 ka", angle = 90, size = 2.5) +
   geom_vline(xintercept=10000, colour = "grey") +
-  annotate("text", x = 2250000, y = 23500, label = "PLEISTOCENE", angle = 90, size = 2.5) +
+  annotate("text", x = 2250000, y = 25000, label = "PLEISTOCENE", angle = 90, size = 2.5) +
   geom_vline(xintercept=5300000, colour = "grey") +
-  annotate("text", x = 4550000, y = 17000, label = "PLIOCENE", angle = 90, size = 2.5)
+  annotate("text", x = 4550000, y = 18500, label = "PLIOCENE", angle = 90, size = 2.5)
 
 
 #ggsave("figs/Figure_3.tiff", fig_3, height = 4, width = 7)
