@@ -90,15 +90,15 @@ psmc_df <- psmc_df %>%
   mutate(fac = as.factor(rep(fac, each = 762)))
 
 
-png(file="figs/psmc_figure.png", units = "in", res = 300, height=5, width=9)
-
-ggplot(mapping = aes(dplyr::filter(psmc_df, Sample == "MSH005" & mu == mid_mu & g == mid_g))) +
+fig_3 <- ggplot(mapping = aes(dplyr::filter(psmc_df, Sample == "MSH005" & mu == mid_mu & g == mid_g))) +
   geom_line(aes(YearsAgo, Ne, group = Boot, col = Sample), 
             dplyr::filter(boot_df, Sample == "MSH005" & mu == mid_mu & g == mid_g), 
-            size = .1, alpha = 0.4, col = cbPalette[2]) +
+            size = .05, alpha = 0.4, col = cbPalette[2]) +
   geom_line(aes(YearsAgo, Ne, col = fac), 
-            dplyr::filter(psmc_df, Sample == "MSH005"), size = 0.8, alpha=0.6) +  
+            dplyr::filter(psmc_df, Sample == "MSH005"), size = 0.7, alpha=0.6) +  
   theme_emily() +
+  theme(axis.title = element_text(size = 11),
+        axis.text = element_text(size = 9)) +
   scale_colour_manual(values = cbPalette) +
   theme(legend.position = "none") +
   scale_x_log10(#breaks = trans_breaks("log10", function(x) 10^x),
@@ -112,15 +112,17 @@ ggplot(mapping = aes(dplyr::filter(psmc_df, Sample == "MSH005" & mu == mid_mu & 
   annotate("rect", xmin = 10000, xmax = 120000, ymin = -Inf, ymax = Inf,
            alpha = .1) +
   geom_vline(xintercept=22000, linetype = "dashed", colour = "grey") +
-  annotate("text", x = 20000, y = 124000, label = "LGM 22 ka", angle = 90, size = 3) +
-  geom_vline(xintercept=10000, colour = "grey") +
-  annotate("text", x = 9300, y = 123000, label = "HOLOCONE", angle = 90, size = 3) +
+  annotate("text", x = 8700, y = 115000, label = "HOLOCONE", angle = 90, size = 2.5) +
   geom_vline(xintercept=2600000, colour = "grey") +
-  annotate("text", x = 2400000, y = 121000, label = "PLEISTOCENE", angle = 90, size = 3) +
+  annotate("text", x = 19000, y = 118000, label = "LGM 22 ka", angle = 90, size = 2.5) +
+  geom_vline(xintercept=10000, colour = "grey") +
+  annotate("text", x = 2250000, y = 23500, label = "PLEISTOCENE", angle = 90, size = 2.5) +
   geom_vline(xintercept=5300000, colour = "grey") +
-  annotate("text", x = 4900000, y = 125000, label = "PLIOCENE", angle = 90, size = 3)
+  annotate("text", x = 4550000, y = 17000, label = "PLIOCENE", angle = 90, size = 2.5)
 
-dev.off()
+
+#ggsave("figs/Figure_3.tiff", fig_3, height = 4, width = 7)
+ggsave("figs/Figure_3.tiff", fig_3, height = 6.5, width = 11, units = "cm")
 
 
 # With legend

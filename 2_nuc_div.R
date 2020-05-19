@@ -99,10 +99,15 @@ het_6 <- ggplot(ind_het_6_chr, aes(ID3, het, fill = pop)) +
   geom_boxplot(outlier.size = -1, col = "grey40", alpha = 0.9) +
   geom_jitter(size = 2, shape = 21, alpha = 0.3, width = 0.1) +
   theme_emily() +
+  theme(axis.title = element_text(size = 12),
+        axis.text = element_text(size = 10),
+        legend.title = element_text(size = 9),
+        legend.text = element_text(size = 8),
+        axis.text.x = element_text(angle = 60, hjust = 1),
+        legend.position=c(.85, .2)) +
   scale_fill_manual(values = cbPalette[c(2,3,1)], name = "Population") +
   scale_y_continuous(labels=scaleFUN) + 
   ylab("Genome-wide heterozygosity") + xlab("Individual ID") +
-  theme(legend.position=c(.9, .2)) +
   ggtitle("B")
 # +
 #  geom_signif(comparisons = list(c("G445", "MSH009")), 
@@ -166,46 +171,51 @@ sp_het_plot <- ggplot(sp_het, aes(N_census, Observed_Het,
                                   fill = IUCN, label = Common_Name)) +
   geom_text_repel(data = subset(sp_het, N_census == 600000), # Dolphin
                   nudge_x = 0.5,
-                  nudge_y = 0.00015, segment.size = 0.2) +
+                  nudge_y = 0.00015, segment.size = 0.2, size = 3) +
   geom_text_repel(data = subset(sp_het, N_census == 150000), # W Gorilla
                   nudge_x = 0.6,
-                  nudge_y = -0.0001, segment.size = 0.2) +
+                  nudge_y = -0.0001, segment.size = 0.2, size = 3) +
   geom_text_repel(data = subset(sp_het, N_census == 90000), # Chimp
-                  nudge_x = 0.7, segment.size = 0.2) +
+                  nudge_x = 0.7, segment.size = 0.2, size = 3) +
   geom_text_repel(data = subset(sp_het, N_census == 50000), # Wolf
                   nudge_x = -0.5, 
-                  nudge_y = 0.0002, segment.size = 0.2) +
+                  nudge_y = 0.0002, segment.size = 0.2, size = 3) +
   geom_text_repel(data = subset(sp_het, N_census == 30000), # Lion
                   nudge_x = 0.2, 
-                  nudge_y = -0.0002, segment.size = 0.2) +
+                  nudge_y = -0.0002, segment.size = 0.2, size = 3) +
   geom_text_repel(data = subset(sp_het, Common_Name == "Bonobo"), # Bonobo
                   nudge_x = -0.35,
-                  nudge_y = -0.0001, segment.size = 0.2) +
+                  nudge_y = -0.0001, segment.size = 0.2, size = 3) +
   geom_text_repel(data = subset(sp_het, Common_Name == "Scimitar-horned oryx"), # SHO
-                  nudge_x = -0.9, segment.size = 0.2, fontface = "bold") +
-  
+                  nudge_x = -0.9, segment.size = 0.2, fontface = "bold", size = 3) +
   geom_text_repel(data = subset(sp_het, Common_Name == "Sumatran Orangutan"), # Sumatran Orang
                   nudge_x = -0.5,
-                  nudge_y = 0.0003, segment.size = 0.2) +
+                  nudge_y = 0.0003, segment.size = 0.2, size = 3) +
   geom_text_repel(data = subset(sp_het, N_census == 8000), # Lynx
                   nudge_x = 0.5,
-                  nudge_y = 0.0001, segment.size = 0.2) +
+                  nudge_y = 0.0001, segment.size = 0.2, size = 3) +
   geom_text_repel(data = subset(sp_het, N_census == 6700), # Cheetah
                   nudge_x = 0.1,
-                  nudge_y = -0.0001, segment.size = 0.2) +
+                  nudge_y = -0.0001, segment.size = 0.2, size = 3) +
   geom_text_repel(data = subset(sp_het, N_census == 850), # Wolverine
                   nudge_x = -0.5,
-                  nudge_y = 0.00015, segment.size = 0.2) +
+                  nudge_y = 0.00015, segment.size = 0.2, size = 3) +
   geom_text_repel(data = subset(sp_het, N_census < 850), # Baiji, Lynx, Tiger 
                   nudge_x = -0.6,
-                  nudge_y = 0.0001, segment.size = 0.2) +
+                  nudge_y = 0.0001, segment.size = 0.2, size = 3) +
   geom_pointrange(size = 0.5, aes(ymin=Min_Het, ymax=Max_Het)) +
-  geom_point(shape = 21, size = 3) +
+  geom_point(shape = 21, size = 2.5) +
   scale_fill_manual(values=c("black", "#CB2314", "#E58601", "#F2AD00", "#9C964A", "#0B775E"),
                     limits=c("EW", "CR", "EN",
                              "VU", "NT", "LC")) +
   theme_emily() +
-  theme(legend.justification = c(0, 1), legend.position = c(0, 1)) + 
+  theme(legend.justification = c(0, 1), 
+        axis.text.x = element_text(angle = 60, hjust = 1),
+        legend.position = c(0, 1), 
+        legend.title = element_text(size = 9),
+        legend.text = element_text(size = 8),
+        axis.title = element_text(size = 12),
+        axis.text = element_text(size = 10)) +
   scale_x_continuous(trans='log10', 
                      breaks = c(10, 1000, 100000),
                      label = comma) +
@@ -215,20 +225,22 @@ sp_het_plot <- ggplot(sp_het, aes(N_census, Observed_Het,
 
 # Arrange plots
 
+# tiff
+
+fig_2 <- grid.arrange(sp_het_plot, het_6,
+                      ncol = 2, nrow = 1,
+                      widths = c(2.4, 1.6)) 
+
+ggsave("figs/Figure_2.tiff", fig_2, height = 11, width = 21, units = "cm")
+
+ # png
+
 png(file="figs/Figure_2.png", units = "in", res = 300, height=5, width=11)
 
 grid.arrange(sp_het_plot, het_6,
              ncol = 2, nrow = 1,
              widths = c(2.4, 1.6))
 dev.off()
-
-# tiff
-
-fig_2 <- grid.arrange(sp_het_plot, het_6,
-             ncol = 2, nrow = 1,
-             widths = c(2.4, 1.6))
-
-ggsave("figs/Figure_2.tiff", fig_2, height = 5, width = 11)
 
 
 #~~~~~~~~~~~~~~~~#
