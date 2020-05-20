@@ -95,11 +95,8 @@ het <- function(x){
 
 #~~ Read in filtered SNP file
 
-#snp_file <- fread("data/snps_focal/ORYX_geno_focal_biallelic_gdepth_miss_himaf.traw")
+snp_file <- fread("data/snps_focal/ORYX_geno_focal_biallelic_gdepth_miss_himaf.traw")
 
-snp_file <- fread("data/snps_focal/ORYX_geno_focal_biallelic_gdepth_miss_hwe_himaf.traw")
-
-snp_file <- fread("data/snps_focal/ORYX_geno_focal_biallelic_gdepth_miss_mac.traw")
 
 snps <- snp_file %>%
   select(-c(SNP, `(C)M`, COUNTED, ALT)) %>%
