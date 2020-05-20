@@ -95,7 +95,11 @@ het <- function(x){
 
 #~~ Read in filtered SNP file
 
-snp_file <- fread("data/snps_focal/ORYX_geno_focal_biallelic_gdepth_miss_himaf.traw")
+#snp_file <- fread("data/snps_focal/ORYX_geno_focal_biallelic_gdepth_miss_himaf.traw")
+
+snp_file <- fread("data/snps_focal/ORYX_geno_focal_biallelic_gdepth_miss_hwe_himaf.traw")
+
+snp_file <- fread("data/snps_focal/ORYX_geno_focal_biallelic_gdepth_miss_mac.traw")
 
 snps <- snp_file %>%
   select(-c(SNP, `(C)M`, COUNTED, ALT)) %>%
@@ -135,19 +139,21 @@ df <- rbind(emp, full) %>%
                                                   "G445", "G449")))
 
 df_ci <- filter(df, id == "sim") %>%
-  group_by(Sample_ID, id) %>% 
+  dplyr::group_by(Sample_ID, id) %>% 
   dplyr::summarise(CI_low = quantile(het, probs = c(0.025,0.975))[1],
-                   CI_high = quantile(het, probs = c(0.025,0.975))[2]) %>%
-  mutate(Sample_ID = factor(Sample_ID, levels = c("#33556", "#36948",
-                                                  "#34412", "#35552",
-                                                  "G445", "G449")))
+                   CI_high = quantile(het, probs = c(0.025,0.975))[2])
+
+df_ci$Sample_ID <- factor(df_ci$Sample_ID, levels = c("#33556", "#36948",
+                                                      "#34412", "#35552",
+                                                      "G445", "G449"))
 
 df_mean <- filter(df, id == "emp") %>%
   group_by(Sample_ID, id) %>% 
-  dplyr::summarise(mean_het = mean(het)) %>%
-  mutate(Sample_ID = factor(Sample_ID, levels = c("#33556", "#36948",
-                                                  "#34412", "#35552",
-                                                  "G445", "G449")))
+  dplyr::summarise(mean_het = mean(het))
+
+df_mean$Sample_ID <- factor(df_mean$Sample_ID, levels = c("#33556", "#36948",
+                                                      "#34412", "#35552",
+                                                      "G445", "G449"))
 
 #~~ Plotting
 

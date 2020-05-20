@@ -8,7 +8,7 @@ This repository contains the scripts used for downstream analyses and visualisat
 
 **Data**
 -------------
-Most intermediate data files required to run these scripts are available on the Dryad Digital Repository. All other files can be generated using scripts from the [first part](https://github.com/elhumble/SHO_reseq_2020) of the pipeline.  
+Most intermediate data files required to run these scripts are available on the Dryad Digital Repository. Otherwise, files can be generated using scripts from the [first part](https://github.com/elhumble/SHO_reseq_2020) of the pipeline.  
 
 `/scripts` contains a few extra scripts that are required for analyses.
 
